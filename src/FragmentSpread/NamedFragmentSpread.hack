@@ -1,7 +1,3 @@
-<?php
-
-declare(strict_types = 1);
-
 namespace Graphpinator\Parser\FragmentSpread;
 
 final class NamedFragmentSpread implements \Graphpinator\Parser\FragmentSpread\FragmentSpread

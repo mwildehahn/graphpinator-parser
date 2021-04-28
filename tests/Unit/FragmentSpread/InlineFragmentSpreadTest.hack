@@ -1,7 +1,3 @@
-<?php
-
-declare(strict_types = 1);
-
 namespace Graphpinator\Parser\Tests\Unit\FragmentSpread;
 
 final class InlineFragmentSpreadTest extends \PHPUnit\Framework\TestCase

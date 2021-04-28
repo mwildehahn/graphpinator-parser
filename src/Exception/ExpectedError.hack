@@ -1,7 +1,3 @@
-<?php
-
-declare(strict_types = 1);
-
 namespace Graphpinator\Parser\Exception;
 
 abstract class ExpectedError extends \Graphpinator\Parser\Exception\ParserError

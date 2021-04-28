@@ -1,7 +1,3 @@
-<?php
-
-declare(strict_types = 1);
-
 namespace Graphpinator\Parser\Tests\Unit;
 
 final class ParserTest extends \PHPUnit\Framework\TestCase
