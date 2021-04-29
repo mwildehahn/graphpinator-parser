@@ -11,6 +11,7 @@ final class ParserTest extends \Facebook\HackTest\HackTest {
 
         expect(0)->toBeSame(C\count($result->getFragments()));
         expect(1)->toBeSame(C\count($result->getOperations()));
+
         $operation = vec($result->getOperations())[0];
         expect(0)->toBeSame(C\count($operation->getVariables()));
         expect(0)->toBeSame(C\count($operation->getFields()));
@@ -18,113 +19,96 @@ final class ParserTest extends \Facebook\HackTest\HackTest {
         expect('queryName')->toBeSame($operation->getName());
     }
 
-    // public function testQuery() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('query queryName {}');
+    public function testQuery(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('query queryName {}');
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
-    //     self::assertCount(0, $result->getOperations()->current()->getVariables());
-    //     self::assertCount(0, $result->getOperations()->current()->getFields());
-    //     self::assertSame('query', $result->getOperations()->current()->getType());
-    //     self::assertSame('queryName', $result->getOperations()->current()->getName());
-    // }
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
 
-    // public function testMutation() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('mutation mutName {}');
+        $operation = vec($result->getOperations())[0];
+        expect(0)->toBeSame(C\count($operation->getVariables()));
+        expect(0)->toBeSame(C\count($operation->getFields()));
+        expect('query')->toBeSame($operation->getType());
+        expect('queryName')->toBeSame($operation->getName());
+    }
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
-    //     self::assertCount(0, $result->getOperations()->current()->getVariables());
-    //     self::assertCount(0, $result->getOperations()->current()->getFields());
-    //     self::assertSame('mutation', $result->getOperations()->current()->getType());
-    //     self::assertSame('mutName', $result->getOperations()->current()->getName());
-    // }
+    public function testMutation(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('mutation mutName {}');
 
-    // public function testSubscription() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('subscription subName {}');
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
-    //     self::assertCount(0, $result->getOperations()->current()->getVariables());
-    //     self::assertCount(0, $result->getOperations()->current()->getFields());
-    //     self::assertSame('subscription', $result->getOperations()->current()->getType());
-    //     self::assertSame('subName', $result->getOperations()->current()->getName());
-    // }
+        $operation = vec($result->getOperations())[0];
+        expect(0)->toBeSame(C\count($operation->getVariables()));
+        expect(0)->toBeSame(C\count($operation->getFields()));
+        expect('mutation')->toBeSame($operation->getType());
+        expect('mutName')->toBeSame($operation->getName());
+    }
 
-    // public function testQueryNoName() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('query {}');
+    public function testSubscription(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('subscription subName {}');
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
-    //     self::assertCount(0, $result->getOperations()->current()->getVariables());
-    //     self::assertCount(0, $result->getOperations()->current()->getFields());
-    //     self::assertSame('query', $result->getOperations()->current()->getType());
-    //     self::assertNull($result->getOperations()->current()->getName());
-    // }
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
 
-    // public function testQueryShorthand() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('{}');
+        $operation = vec($result->getOperations())[0];
+        expect(0)->toBeSame(C\count($operation->getVariables()));
+        expect(0)->toBeSame(C\count($operation->getFields()));
+        expect('subscription')->toBeSame($operation->getType());
+        expect('subName')->toBeSame($operation->getName());
+    }
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
-    //     self::assertCount(0, $result->getOperations()->current()->getVariables());
-    //     self::assertCount(0, $result->getOperations()->current()->getFields());
-    //     self::assertSame('query', $result->getOperations()->current()->getType());
-    //     self::assertNull($result->getOperations()->current()->getName());
-    // }
+    public function testQueryNoName(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('query {}');
 
-    // public function testQueryMultiple() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('query qName {} mutation mName {}');
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
 
-    //     self::assertCount(0, $result->getFragments());
-    // }
+        $operation = vec($result->getOperations())[0];
+        expect(0)->toBeSame(C\count($operation->getVariables()));
+        expect(0)->toBeSame(C\count($operation->getFields()));
+        expect('query')->toBeSame($operation->getType());
+        expect($operation->getName())->toBeSame('');
+    }
 
-    // public function testDirective() : void
-    // {
-    //     $result = \Graphpinator\Parser\Parser::parseString('query { field @directiveName(arg1: 123) }');
+    public function testQueryShorthand(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('{}');
 
-    //     self::assertCount(0, $result->getFragments());
-    //     self::assertCount(1, $result->getOperations());
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
 
-    //     $operation = $result->getOperations()->current();
+        $operation = vec($result->getOperations())[0];
+        expect(0)->toBeSame(C\count($operation->getVariables()));
+        expect(0)->toBeSame(C\count($operation->getFields()));
+        expect('query')->toBeSame($operation->getType());
+        expect($operation->getName())->toBeSame('');
+    }
 
-    //     self::assertCount(1, $operation->getFields());
-    //     self::assertArrayHasKey(0, $operation->getFields());
-    //     self::assertCount(1, $operation->getFields()->offsetGet(0)->getDirectives());
-    //     self::assertArrayHasKey(0, $operation->getFields()->offsetGet(0)->getDirectives());
-    //     self::assertSame('directiveName', $operation->getFields()->offsetGet(0)->getDirectives()->offsetGet(0)->getName());
-    //     self::assertCount(1, $operation->getFields()->offsetGet(0)->getDirectives()->offsetGet(0)->getArguments());
-    //     self::assertArrayHasKey('arg1', $operation->getFields()->offsetGet(0)->getDirectives()->offsetGet(0)->getArguments());
-    //     self::assertSame(
-    //         'arg1',
-    //         $operation
-    //             ->getFields()
-    //             ->offsetGet(0)
-    //             ->getDirectives()
-    //             ->offsetGet(0)
-    //             ->getArguments()
-    //             ->offsetGet('arg1')
-    //             ->getName(),
-    //     );
-    //     self::assertSame(
-    //         123,
-    //         $operation
-    //             ->getFields()
-    //             ->offsetGet(0)
-    //             ->getDirectives()
-    //             ->offsetGet(0)
-    //             ->getArguments()
-    //             ->offsetGet('arg1')
-    //             ->getValue()
-    //             ->getRawValue(),
-    //     );
-    // }
+    public function testQueryMultiple(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('query qName {} mutation mName {}');
+
+        expect(0)->toBeSame(C\count($result->getFragments()));
+    }
+
+    public function testDirective(): void {
+        $result = \Graphpinator\Parser\Parser::parseString('query { field @directiveName(arg1: 123) }');
+
+        expect(0)->toBeSame(C\count($result->getFragments()));
+        expect(1)->toBeSame(C\count($result->getOperations()));
+
+        $operation = vec($result->getOperations())[0];
+        expect(C\count($operation->getFields()))->toBeSame(1);
+
+        $field = $operation->getFields()[0];
+        $directives = $field->getDirectives() as nonnull;
+        expect(C\count($directives))->toBeSame(1);
+        expect($directives[0]->getName())->toBeSame('directiveName');
+        $arguments = $directives[0]->getArguments() as nonnull;
+        expect(C\count($arguments))->toBeSame(1);
+        expect(C\contains_key($arguments, 'arg1'))->toBeTrue();
+        expect($arguments['arg1']->getName())->toBeSame('arg1');
+        expect($arguments['arg1']->getValue()->getRawValue())->toBeSame(123);
+    }
 
     // public function testFragment() : void
     // {
