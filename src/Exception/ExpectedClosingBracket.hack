@@ -1,6 +1,10 @@
 namespace Graphpinator\Parser\Exception;
 
-final class ExpectedClosingBracket extends \Graphpinator\Parser\Exception\ExpectedError
-{
-    public const MESSAGE = 'Expected closing ] for list type modifier, got "%s".';
+use namespace HH\Lib\Str;
+
+final class ExpectedClosingBracket extends \Graphpinator\Parser\Exception\ExpectedError {
+    public function __construct(\Graphpinator\Common\Location $location, string $token, string $message = '') {
+        $message = Str\format('Expected closing ] for list type modifier, got "%s".', $token);
+        parent::__construct($location, $token, $message);
+    }
 }

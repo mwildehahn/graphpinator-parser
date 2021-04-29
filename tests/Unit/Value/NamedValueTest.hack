@@ -1,15 +1,15 @@
 namespace Graphpinator\Parser\Tests\Unit\Value;
 
-final class NamedValueTest extends \PHPUnit\Framework\TestCase
-{
-    public function simpleDataProvider() : array
-    {
-        return [
-            [new \Graphpinator\Parser\Value\Literal(123), 'name'],
-            [new \Graphpinator\Parser\Value\Literal(123.123), 'name'],
-            [new \Graphpinator\Parser\Value\Literal('123'), 'name'],
-            [new \Graphpinator\Parser\Value\Literal(true), 'name'],
-            [new \Graphpinator\Parser\Value\ListVal([]), 'name'],
+use function Facebook\FBExpect\expect;
+
+final class NamedValueTest extends \Facebook\HackTest\HackTest {
+    public function simpleDataProvider(): vec<(\Graphpinator\Parser\Value\Value, string)> {
+        return vec[
+            tuple(new \Graphpinator\Parser\Value\Literal(123), 'name'),
+            tuple(new \Graphpinator\Parser\Value\Literal(123.123), 'name'),
+            tuple(new \Graphpinator\Parser\Value\Literal('123'), 'name'),
+            tuple(new \Graphpinator\Parser\Value\Literal(true), 'name'),
+            tuple(new \Graphpinator\Parser\Value\ListVal(vec[]), 'name'),
         ];
     }
 
@@ -18,12 +18,12 @@ final class NamedValueTest extends \PHPUnit\Framework\TestCase
      * @param \Graphpinator\Parser\Value\Value $value
      * @param string $name
      */
-    public function testSimple(\Graphpinator\Parser\Value\Value $value, string $name) : void
-    {
+    <<\Facebook\HackTest\DataProvider('simpleDataProvider')>>
+    public function testSimple(\Graphpinator\Parser\Value\Value $value, string $name): void {
         $obj = new \Graphpinator\Parser\Value\ArgumentValue($value, $name);
 
-        self::assertSame($name, $obj->getName());
-        self::assertSame($value, $obj->getValue());
-        self::assertSame($value->getRawValue(), $obj->getValue()->getRawValue());
+        expect($name)->toBeSame($obj->getName());
+        expect($value)->toBeSame($obj->getValue());
+        expect($value->getRawValue())->toBeSame($obj->getValue()->getRawValue());
     }
 }

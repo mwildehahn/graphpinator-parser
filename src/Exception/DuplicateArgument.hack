@@ -1,13 +1,11 @@
 namespace Graphpinator\Parser\Exception;
 
-final class DuplicateArgument extends \Graphpinator\Parser\Exception\ParserError
-{
-    public const MESSAGE = 'Argument with name "%s" already exists on current field.';
+use namespace HH\Lib\Str;
 
-    public function __construct(string $name, \Graphpinator\Common\Location $location)
-    {
-        $this->messageArgs = [$name];
+final class DuplicateArgument extends \Graphpinator\Parser\Exception\ParserError {
+    public function __construct(string $name, \Graphpinator\Common\Location $location) {
+        $message = Str\format('Argument with name "%s" already exists on current field.', $name);
 
-        parent::__construct($location);
+        parent::__construct($message, $location);
     }
 }

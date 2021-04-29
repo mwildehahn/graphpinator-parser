@@ -1,6 +1,10 @@
 namespace Graphpinator\Parser\Exception;
 
-final class ExpectedColon extends \Graphpinator\Parser\Exception\ExpectedError
-{
-    public const MESSAGE = 'Expected colon, got "%s".';
+use namespace HH\Lib\Str;
+
+final class ExpectedColon extends \Graphpinator\Parser\Exception\ExpectedError {
+    public function __construct(\Graphpinator\Common\Location $location, string $token, string $message = '') {
+        $message = Str\format('Expected colon, got "%s".', $token);
+        parent::__construct($location, $token, $message);
+    }
 }

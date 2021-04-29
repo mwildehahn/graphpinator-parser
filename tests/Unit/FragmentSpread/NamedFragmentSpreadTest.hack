@@ -1,11 +1,12 @@
 namespace Graphpinator\Parser\Tests\Unit\FragmentSpread;
 
-final class NamedFragmentSpreadTest extends \PHPUnit\Framework\TestCase
-{
-    public function testConstructor() : void
-    {
+use function Facebook\FBExpect\expect;
+use namespace HH\Lib\C;
+
+final class NamedFragmentSpreadTest extends \Facebook\HackTest\HackTest {
+    public function testConstructor(): void {
         $val = new \Graphpinator\Parser\FragmentSpread\NamedFragmentSpread('fragment');
-        self::assertSame('fragment', $val->getName());
-        self::assertCount(0, $val->getDirectives());
+        expect($val->getName())->toBeSame('fragment');
+        expect(C\count($val->getDirectives()))->toBeSame(0);
     }
 }

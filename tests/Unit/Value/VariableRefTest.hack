@@ -1,13 +1,12 @@
 namespace Graphpinator\Parser\Tests\Unit\Value;
 
-final class VariableRefTest extends \PHPUnit\Framework\TestCase
-{
-    public function testGetRawValue() : void
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Operation not supported.');
+use function Facebook\FBExpect\expect;
 
-        $val = new \Graphpinator\Parser\Value\VariableRef('varName');
-        $val->getRawValue();
+final class VariableRefTest extends \Facebook\HackTest\HackTest {
+    public function testGetRawValue(): void {
+        expect(() ==> {
+            $val = new \Graphpinator\Parser\Value\VariableRef('varName');
+            $val->getRawValue();
+        })->toThrow(\RuntimeException::class, 'Operation not supported.');
     }
 }

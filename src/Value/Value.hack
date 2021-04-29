@@ -1,8 +1,8 @@
 namespace Graphpinator\Parser\Value;
 
-interface Value
-{
-    public function getRawValue() : \stdClass|array|string|int|float|bool|null;
+interface Value {
+    // TODO: union: \stdClass|array|string|int|float|bool|null
+    public function getRawValue(): mixed;
 
-    public function accept(ValueVisitor $valueVisitor) : mixed;
+    public function accept(ValueVisitor $valueVisitor): mixed;
 }

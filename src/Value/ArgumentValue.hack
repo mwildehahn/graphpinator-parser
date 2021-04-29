@@ -1,21 +1,16 @@
 namespace Graphpinator\Parser\Value;
 
-final class ArgumentValue
-{
-    use \Nette\SmartObject;
+final class ArgumentValue {
 
-    public function __construct(
-        private \Graphpinator\Parser\Value\Value $value,
-        private string $name,
-    ) {}
+    public function __construct(private \Graphpinator\Parser\Value\Value $value, private string $name) {}
 
-    public function getValue() : \Graphpinator\Parser\Value\Value
-    {
+    public function getValue(): \Graphpinator\Parser\Value\Value {
         return $this->value;
     }
 
-    public function getName() : string
-    {
+    public function getName(): string {
         return $this->name;
     }
 }
+
+type ArgumentValueSet = dict<string, ArgumentValue>;

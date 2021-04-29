@@ -1,29 +1,20 @@
 namespace Graphpinator\Parser\FragmentSpread;
 
-final class NamedFragmentSpread implements \Graphpinator\Parser\FragmentSpread\FragmentSpread
-{
-    use \Nette\SmartObject;
+final class NamedFragmentSpread implements \Graphpinator\Parser\FragmentSpread\FragmentSpread {
 
     private string $name;
-    private \Graphpinator\Parser\Directive\DirectiveSet $directives;
+    private \Graphpinator\Parser\DirectiveSet $directives;
 
-    public function __construct(
-        string $name,
-        ?\Graphpinator\Parser\Directive\DirectiveSet $directives = null,
-    )
-    {
+    public function __construct(string $name, ?\Graphpinator\Parser\DirectiveSet $directives = null) {
         $this->name = $name;
-        $this->directives = $directives
-            ?? new \Graphpinator\Parser\Directive\DirectiveSet();
+        $this->directives = $directives ?? vec[];
     }
 
-    public function getName() : string
-    {
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getDirectives() : \Graphpinator\Parser\Directive\DirectiveSet
-    {
+    public function getDirectives(): \Graphpinator\Parser\DirectiveSet {
         return $this->directives;
     }
 }

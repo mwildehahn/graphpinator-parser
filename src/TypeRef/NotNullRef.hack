@@ -1,20 +1,14 @@
 namespace Graphpinator\Parser\TypeRef;
 
-final class NotNullRef implements \Graphpinator\Parser\TypeRef\TypeRef
-{
-    use \Nette\SmartObject;
+final class NotNullRef implements \Graphpinator\Parser\TypeRef\TypeRef {
 
-    public function __construct(
-        private TypeRef $innerRef,
-    ) {}
+    public function __construct(private TypeRef $innerRef) {}
 
-    public function getInnerRef() : TypeRef
-    {
+    public function getInnerRef(): TypeRef {
         return $this->innerRef;
     }
 
-    public function print() : string
-    {
-        return $this->innerRef->print() . '!';
+    public function print(): string {
+        return $this->innerRef->print().'!';
     }
 }

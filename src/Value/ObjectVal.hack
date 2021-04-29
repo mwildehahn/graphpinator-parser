@@ -1,33 +1,26 @@
 namespace Graphpinator\Parser\Value;
 
-final class ObjectVal implements \Graphpinator\Parser\Value\Value
-{
-    use \Nette\SmartObject;
+final class ObjectVal implements \Graphpinator\Parser\Value\Value {
 
-    public function __construct(
-        private \stdClass $value,
-    ) {}
+    public function __construct(private dict<string, \Graphpinator\Parser\Value\Value> $value) {}
 
-    public function getValue() : \stdClass
-    {
+    public function getValue(): dict<string, \Graphpinator\Parser\Value\Value> {
         return $this->value;
     }
 
-    public function getRawValue() : \stdClass
-    {
-        $return = new \stdClass();
+    public function getRawValue(): dict<string, mixed> {
+        $return = dict[];
 
-        foreach ((array) $this->value as $key => $value) {
-            \assert($value instanceof Value);
+        foreach ($this->value as $key => $value) {
+            \assert($value is Value);
 
-            $return->{$key} = $value->getRawValue();
+            $return[$key] = $value->getRawValue();
         }
 
         return $return;
     }
 
-    public function accept(ValueVisitor $valueVisitor) : mixed
-    {
+    public function accept(ValueVisitor $valueVisitor): mixed {
         return $valueVisitor->visitObjectVal($this);
     }
 }
