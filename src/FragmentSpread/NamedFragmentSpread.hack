@@ -3,18 +3,18 @@ namespace Graphpinator\Parser\FragmentSpread;
 final class NamedFragmentSpread implements \Graphpinator\Parser\FragmentSpread\FragmentSpread {
 
     private string $name;
-    private \Graphpinator\Parser\DirectiveSet $directives;
+    private \Graphpinator\Parser\Directive\DirectiveSet $directives;
 
-    public function __construct(string $name, ?\Graphpinator\Parser\DirectiveSet $directives = null) {
+    public function __construct(string $name, ?\Graphpinator\Parser\Directive\DirectiveSet $directives = null) {
         $this->name = $name;
-        $this->directives = $directives ?? vec[];
+        $this->directives = $directives ?? new \Graphpinator\Parser\Directive\DirectiveSet();
     }
 
     public function getName(): string {
         return $this->name;
     }
 
-    public function getDirectives(): \Graphpinator\Parser\DirectiveSet {
+    public function getDirectives(): \Graphpinator\Parser\Directive\DirectiveSet {
         return $this->directives;
     }
 }

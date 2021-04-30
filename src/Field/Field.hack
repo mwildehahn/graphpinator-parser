@@ -1,13 +1,13 @@
-namespace Graphpinator\Parser;
+namespace Graphpinator\Parser\Field;
 
 final class Field {
 
     public function __construct(
         private string $name,
         private ?string $alias = null,
-        private ?\Graphpinator\Parser\FieldSet $children = null,
+        private ?\Graphpinator\Parser\Field\FieldSet $children = null,
         private ?\Graphpinator\Parser\Value\ArgumentValueSet $arguments = null,
-        private ?\Graphpinator\Parser\DirectiveSet $directives = null,
+        private ?\Graphpinator\Parser\Directive\DirectiveSet $directives = null,
     ) {}
 
     public function getName(): string {
@@ -18,7 +18,7 @@ final class Field {
         return $this->alias;
     }
 
-    public function getFields(): ?vec<\Graphpinator\Parser\Field> {
+    public function getFields(): ?\Graphpinator\Parser\Field\FieldSet {
         return $this->children;
     }
 
@@ -26,9 +26,7 @@ final class Field {
         return $this->arguments;
     }
 
-    public function getDirectives(): ?\Graphpinator\Parser\DirectiveSet {
+    public function getDirectives(): ?\Graphpinator\Parser\Directive\DirectiveSet {
         return $this->directives;
     }
 }
-
-type FieldSet = vec<Field>;

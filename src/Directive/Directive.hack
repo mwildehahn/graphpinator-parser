@@ -1,4 +1,4 @@
-namespace Graphpinator\Parser;
+namespace Graphpinator\Parser\Directive;
 
 final class Directive {
 
@@ -15,5 +15,3 @@ final class Directive {
         return $this->arguments;
     }
 }
-
-type DirectiveSet = vec<Directive>;

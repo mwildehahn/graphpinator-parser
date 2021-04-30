@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "342149d817fed0dde65fffec36d7cdad",
+    "content-hash": "e0b19efcd730cda4799890c193ff7b52",
     "packages": [
         {
             "name": "hhvm/hsl",
@@ -142,6 +142,54 @@
                 "source": "https://github.com/mwildehahn/graphpinator-tokenizer/tree/v0.1"
             },
             "time": "2021-04-29T19:02:26+00:00"
+        },
+        {
+            "name": "slack/hack-graphql-utils",
+            "version": "v0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mwildehahn/utils.git",
+                "reference": "e5688b05372567811f895cc8700f8f0b4ac9c498"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mwildehahn/utils/zipball/e5688b05372567811f895cc8700f8f0b4ac9c498",
+                "reference": "e5688b05372567811f895cc8700f8f0b4ac9c498",
+                "shasum": ""
+            },
+            "require": {
+                "hhvm/hsl": "^4.41.0"
+            },
+            "require-dev": {
+                "facebook/fbexpect": "^2.7.4",
+                "hhvm/hacktest": "^2.1.2",
+                "hhvm/hhast": "^4.53.4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "autoload-dev": {
+                "classmap": [
+                    "tests/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Hahn",
+                    "email": "mh@slack-corp.com"
+                }
+            ],
+            "description": "Common utils for hack-graphql packages.",
+            "support": {
+                "source": "https://github.com/mwildehahn/utils/tree/v0.1"
+            },
+            "time": "2021-04-30T04:41:22+00:00"
         }
     ],
     "packages-dev": [

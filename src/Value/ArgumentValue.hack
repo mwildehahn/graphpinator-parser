@@ -12,5 +12,3 @@ final class ArgumentValue {
         return $this->name;
     }
 }
-
-type ArgumentValueSet = dict<string, ArgumentValue>;

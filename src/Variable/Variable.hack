@@ -6,7 +6,7 @@ final class Variable {
         private string $name,
         private \Graphpinator\Parser\TypeRef\TypeRef $type,
         private ?\Graphpinator\Parser\Value\Value $default,
-        private \Graphpinator\Parser\DirectiveSet $directives,
+        private \Graphpinator\Parser\Directive\DirectiveSet $directives,
     ) {}
 
     public function getName(): string {
@@ -21,9 +21,7 @@ final class Variable {
         return $this->default;
     }
 
-    public function getDirectives(): \Graphpinator\Parser\DirectiveSet {
+    public function getDirectives(): \Graphpinator\Parser\Directive\DirectiveSet {
         return $this->directives;
     }
 }
-
-type VariableSet = dict<string, Variable>;

@@ -1,19 +1,19 @@
-namespace Graphpinator\Parser;
+namespace Graphpinator\Parser\Fragment;
 
 final class Fragment {
 
     public function __construct(
         private string $name,
         private \Graphpinator\Parser\TypeRef\NamedTypeRef $typeCond,
-        private \Graphpinator\Parser\DirectiveSet $directives,
-        private \Graphpinator\Parser\FieldSet $fields,
+        private \Graphpinator\Parser\Directive\DirectiveSet $directives,
+        private \Graphpinator\Parser\Field\FieldSet $fields,
     ) {}
 
     public function getName(): string {
         return $this->name;
     }
 
-    public function getFields(): vec<\Graphpinator\Parser\Field> {
+    public function getFields(): \Graphpinator\Parser\Field\FieldSet {
         return $this->fields;
     }
 
@@ -21,9 +21,7 @@ final class Fragment {
         return $this->typeCond;
     }
 
-    public function getDirectives(): \Graphpinator\Parser\DirectiveSet {
+    public function getDirectives(): \Graphpinator\Parser\Directive\DirectiveSet {
         return $this->directives;
     }
 }
-
-type FragmentSet = dict<string, Fragment>;
